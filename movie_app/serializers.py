@@ -7,7 +7,7 @@ class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
         fields = 'name'. split()
-#       fields = 'name'. split()
+#       fields = 'name'. split()юю
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
