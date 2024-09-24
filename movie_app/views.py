@@ -1,14 +1,17 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Director, Movie, Review
 from .serializers import (DirectorSerializer, MovieSerializer, ReviewSerializer, DirectorValidateSerializer,
                           MoviesValidateSerializer, ReviewsValidateSerializer)
+from rest_framework.permissions import IsAuthenticated
+
 
 
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def director_list_api_view(request):
     if request.method == 'GET':
         directors = Director.objects.all()
@@ -27,6 +30,7 @@ def director_list_api_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def director_detail_api_view(request, id):
     try:
         director = Director.objects.get(id=id)
@@ -49,6 +53,7 @@ def director_detail_api_view(request, id):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def movie_list_api_view(request):
     if request.method == 'GET':
         movies = Movie.objects.all()
@@ -78,6 +83,7 @@ def movie_list_api_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def movie_detail_api_view(request, id):
     try:
         moviess = Movie.objects.get(id=id)
@@ -106,6 +112,7 @@ def movie_detail_api_view(request, id):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def review_list_api_view(request):
     if request.method == 'GET':
         reviews = Review.objects.all()
@@ -125,6 +132,7 @@ def review_list_api_view(request):
         reviews.save()
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def review_detail_api_view(request, id):
     try:
         reviewss = Review.objects.get(id=id)
